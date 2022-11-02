@@ -3,6 +3,8 @@
 let baseNumsURL = "http://numbersapi.com/";
 let favNumber = 3;
 
+let inputNum = document.getElementById('input-number').value;
+
 let baseCardsURL = "https://deckofcardsapi.com/api"
 let deck;
 
@@ -55,3 +57,5 @@ function drawCards() {
             return axios.get(`${baseCardsURL}/deck/${deck}/draw/?count=1`)
         })
 }
+
+// onClick="numberTrivia(${inputNum})"
