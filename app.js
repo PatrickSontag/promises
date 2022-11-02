@@ -101,6 +101,6 @@ cardBtn.addEventListener("click", (e) => {
     e.preventDefault();
     // console.log("evt listener", d.nextCard);
     d.newCard();
-    cardHTML.innerHTML += `<img src="${d.cardImage}" alt="">`;
+    cardHTML.innerHTML += `<div class="card"><img src="${d.cardImage}" alt=""></div>`;
 })
 
