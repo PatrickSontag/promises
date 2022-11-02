@@ -10,6 +10,8 @@ let triviaHTML = document.getElementById('trivia-list');
 
 let baseCardsURL = "https://deckofcardsapi.com/api"
 let deck;
+let cardBtn = document. getElementById('card-button');
+let cardHTML = document.getElementById('card-pile');
 
 function numberTrivia(num=favNumber) {
     axios
@@ -38,7 +40,7 @@ function numberTrivia(num=favNumber) {
         })
 }
 
-function drawCards() {
+function cardsAPI() {
     axios
         // .get(`${baseCardsURL}/deck/new/shuffle/?deck_count=1`)
         .get(`${baseCardsURL}/deck/new/draw/?count=1`)
@@ -65,9 +67,24 @@ function drawCards() {
         })
 }
 
+function drawCard() {
+    axios
+        .get(`${baseCardsURL}/deck/new/shuffle/?deck_count=1`)
+        .then(d => {
+            deck = d.data.deck_id;
+            return
+        })
+}
+
+
 numBtn.addEventListener("click", (e) => {
     e.preventDefault();
     inputNum = document.getElementById('input-number').value;
     numberTrivia(inputNum)
 });
 // onClick="numberTrivia(${inputNum})"
+
+cardBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+
+})
