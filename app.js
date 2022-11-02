@@ -45,7 +45,7 @@ function cardsAPI() {
         // .get(`${baseCardsURL}/deck/new/shuffle/?deck_count=1`)
         .get(`${baseCardsURL}/deck/new/draw/?count=1`)
         .then(d1c1 => {
-            console.log(d1c1.data.cards[0].code);
+            console.log("from deck call:", d1c1.data.cards[0].code);
             return axios.get(`${baseCardsURL}/deck/new/shuffle/?deck_count=1`)
             // console.log(d.data.deck_id);
             // let deck = d.data.deck_id;
@@ -67,13 +67,19 @@ function cardsAPI() {
         })
 }
 
-function drawCard() {
+function newDeck() {
     axios
         .get(`${baseCardsURL}/deck/new/shuffle/?deck_count=1`)
         .then(d => {
             deck = d.data.deck_id;
-            return
+            console.log("newDeck: deck updated");
+            // return
         })
+}
+
+function newCard() {
+    axios
+        .get(`${baseCardsURL}/deck/${deck}/draw/?count=1`)
 }
 
 
