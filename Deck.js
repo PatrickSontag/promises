@@ -5,6 +5,7 @@ class Deck {
         this.deck = this.newDeck();
         this.currentCard = '';
         this.nextCard = '';
+        this.cardImage = '';
     }
     newDeck() {
        axios
@@ -14,24 +15,28 @@ class Deck {
                 this.deck = deck;
                 return axios.get(`${baseCardsURL}/deck/${deck}/draw/?count=1`)
             .then(c => {
-                let card = c.data.cards[0].code;
-                this.nextCard = card;
+                this.nextCard = c.data.cards[0].code;
+                // let card = c.data.cards[0].code;
+                // this.nextCard = card;
+                this.cardImage = c.data.cards[0].image;
             })
         })
     }
     newCard() {
+        console.log("NEXT card", this.nextCard);
         this.currentCard = this.nextCard;
         this.showCard();
         axios
             .get(`${baseCardsURL}/deck/${deck}/draw/?count=1`)
             .then(c => {
-                let card = c.data.cards[0].code;
-                this.nextCard = card;
+                this.nextCard = c.data.cards[0].code;
+                this.cardImage = c.data.cards[0].image;
             })
     }
 
     showCard() {
         console.log("showCard", this.currentCard);
+        console.log("deck", this.deck);
         return this.currentCard;
     }
 }

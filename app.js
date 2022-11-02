@@ -9,9 +9,10 @@ let numBtn = document.getElementById('number-button');
 let triviaHTML = document.getElementById('trivia-list');
 
 let baseCardsURL = "https://deckofcardsapi.com/api"
-let deck;
+let deck = "API deck number";
 let cardBtn = document. getElementById('card-button');
 let cardHTML = document.getElementById('card-pile');
+let d = "deck class instance";
 
 function numberTrivia(num=favNumber) {
     axios
@@ -67,21 +68,27 @@ function cardsAPI() {
         })
 }
 
-function newDeck() {
-    axios
-        .get(`${baseCardsURL}/deck/new/shuffle/?deck_count=1`)
-        .then(d => {
-            deck = d.data.deck_id;
-            console.log("newDeck: deck updated");
-            // return
-        })
-}
+// function newDeck() {
+//     axios
+//         .get(`${baseCardsURL}/deck/new/shuffle/?deck_count=1`)
+//         .then(d => {
+//             deck = d.data.deck_id;
+//             console.log("newDeck: deck updated");
+//             // return
+//         })
+// }
 
-function newCard() {
-    axios
-        .get(`${baseCardsURL}/deck/${deck}/draw/?count=1`)
-}
+// function newCard() {
+//     axios
+//         .get(`${baseCardsURL}/deck/${deck}/draw/?count=1`)
+// }
 
+
+addEventListener('load', () => {
+    console.log("eventListener Page Load");
+    d = new Deck;
+    console.log("deck", d);
+})
 
 numBtn.addEventListener("click", (e) => {
     e.preventDefault();
@@ -92,5 +99,8 @@ numBtn.addEventListener("click", (e) => {
 
 cardBtn.addEventListener("click", (e) => {
     e.preventDefault();
-
+    // console.log("evt listener", d.nextCard);
+    d.newCard();
+    cardHTML.innerHTML += `<img src="${d.cardImage}" alt="">`;
 })
+
